@@ -1,10 +1,8 @@
 import { CollectionConfig } from "payload/types";
 
-const Daftar: CollectionConfig = {
+const daftar: CollectionConfig = {
   slug: "daftar",
-  auth: {
-    disableLocalStrategy: true,
-  },
+  auth: true,
   access: {
     create: () => true,
     read: () => true,
@@ -41,8 +39,14 @@ const Daftar: CollectionConfig = {
         label: "tanggal pendaftaran",
         type: "date",
         required: true,
-    },
+        admin: {
+            date: {
+                pickerAppearance: 'dayOnly',
+                displayFormat: 'DD MM YYYY',
+            }
+        }
+    }
   ],
 };
 
-export default Daftar;
+export default daftar;
