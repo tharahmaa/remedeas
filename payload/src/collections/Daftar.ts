@@ -2,7 +2,7 @@ import { CollectionConfig } from "payload/types";
 
 const daftar: CollectionConfig = {
   slug: "daftar",
-  auth: true,
+  // auth: true,
   access: {
     create: () => true,
     read: () => true,
@@ -38,13 +38,13 @@ const daftar: CollectionConfig = {
         name: "tanggal",
         label: "tanggal pendaftaran",
         type: "date",
-        required: true,
-        admin: {
-            date: {
-                pickerAppearance: 'dayOnly',
-                displayFormat: 'DD MM YYYY',
-            }
-        }
+        // required: true,
+        // admin: {
+        //     date: {
+        //         pickerAppearance: 'dayOnly',
+        //         displayFormat: 'MM DD YYYY',
+        //     }
+        // }
     }
   ],
 };

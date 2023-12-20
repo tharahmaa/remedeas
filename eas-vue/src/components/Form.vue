@@ -1,8 +1,12 @@
 <template>
   <div>
     <h2>Pendaftaran Lomba</h2>
+    <div v-if="registrationSuccess" class="success-message">
+      Pendaftaran berhasil!
+    </div>
+
     <!-- Form Daftar -->
-    <form v-on:submit.prevent="Daftar" class="registration-form">
+    <form @submit.prevent="Daftar" class="registration-form">
       <label for="nama">Nama:</label>
       <input type="text" id="nama" v-model="nama" required>
 
@@ -28,15 +32,17 @@
       return {
         nama: ref(""),
         email: ref(""),
-        asal: ref("")
+        asal: ref(""),
+        errors: ref(""),
+        registrationSuccess: false,
       };
     },
     methods: {
       async Daftar() {
-        const router = useRouter();
+        // const router = useRouter();
         try {
           const res = await fetch('http://localhost:3000/api/daftar', {
-            credentials: "include",
+            // credentials: "include",
             method: 'POST',
 
             headers: {
@@ -46,24 +52,32 @@
                 nama: this.nama,
               email: this.email,
               asal: this.asal,
+              errors: null,
             }),
           });
   
           const json = await res.json();
           console.log (json)
           // Check the response or handle accordingly
-          if (res.ok) {
+          if (res.ok){
+            this.$router.push({ path: "/status" });
             alert('Sukses Mendaftar!');
-   
           } else {
             alert('Gagal Mendaftar.');
           }
-        } catch (error) {
-          console.error('Error saat mendaftar:', error);
-          alert('Terjadi error saat mendaftar. Coba lagi lain kali.');
+          // else {
+          //   console.error(`Error: ${res.status} - ${res.statusText}`);
+          //   const json = await res.json();
+          //   console.error(json.errors); // Log the errors array for further inspection
+          //   this.errors = json.errors ? json.errors[0].message : "Unknown error";
+          //   // this.errors = json.errors[0].message;
+          // }
+        } catch (err) {
+          console.error(err.message);
+          this.errors = err.message;
         }
-      }
-    }
+      },
+    },
   };
   </script>
 

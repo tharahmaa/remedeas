@@ -1,8 +1,9 @@
 <template>
   <div>
-    <!-- <Navbar /> -->
-    <!-- <Home /> -->
+    <!-- <Navbar />
+    <Home /> -->
     <Form />
+    <Status />
     <!-- <Footer /> -->
   </div>
 </template>
@@ -13,14 +14,16 @@ import Navbar from './components/Navbar.vue';
 import Home from './components/Home.vue';
 import Footer from './components/Footer.vue';
 import Form from './components/Form.vue';
+import Status from './components/Status.vue';
 
 export default defineComponent({
   name: 'IndexPage',
   components: {
-    Navbar,
+    // Navbar,
     // Home,
     Form,
-    Footer,
+    Status,
+    // Footer,
   },
 });
 </script>
